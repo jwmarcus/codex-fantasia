@@ -17,17 +17,17 @@
 - [x] Create placeholder pages for main routes
 
 ### Design System Implementation
-- [ ] Create color palette with nostalgic JRPG-inspired colors
-- [ ] Set up typography with retro and modern font combinations
-- [ ] Build reusable UI component library:
-  - [ ] Buttons (standard, primary, pixel-styled)
-  - [ ] Cards (game cards, resource cards)
-  - [ ] Navigation elements
-  - [ ] Forms and inputs
-  - [ ] Filters and search components
-- [ ] Create pixel art decorative elements
-- [ ] Implement responsive grid system
-- [ ] Design layout templates for various page types
+- [x] Create color palette with nostalgic JRPG-inspired colors
+- [x] Set up typography with retro and modern font combinations
+- [x] Build reusable UI component library:
+  - [x] Buttons (standard, primary, pixel-styled)
+  - [x] Cards (game cards, resource cards)
+  - [x] Navigation elements
+  - [x] Forms and inputs
+  - [x] Filters and search components
+- [x] Create pixel art decorative elements
+- [x] Implement responsive grid system
+- [x] Design layout templates for various page types
 
 ### Backend Setup
 - [ ] Set up Node.js + Express backend

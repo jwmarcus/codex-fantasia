@@ -1,39 +1,51 @@
 import { createTheme } from '@mui/material/styles';
-import { pink, lightBlue } from '@mui/material/colors'; // Removed yellow
+// Remove unused color imports if any
+// import { pink, lightBlue } from '@mui/material/colors';
 
-// Create a light, fun theme inspired by Kirby
+// Create a theme with a nostalgic JRPG-inspired palette
 const theme = createTheme({
   palette: {
-    mode: 'light', // Switch to light mode
+    mode: 'light', // Start with light mode
     primary: {
-      // Use a playful pink for the primary color
-      main: pink[400], 
-      contrastText: '#fff', // White text on pink
+      // A dependable, slightly muted blue (like Indigo 500)
+      main: '#3f51b5',
+      contrastText: '#ffffff',
     },
     secondary: {
-      // Use a light blue for the secondary color
-      main: lightBlue[300],
-      contrastText: '#000', // Dark text on light blue
+      // A warm gold/amber for accents (like Amber 700)
+      main: '#ffa000',
+      contrastText: 'rgba(0, 0, 0, 0.87)', // Dark text on gold
     },
     background: {
-      // Slightly off-white background for softness
-      default: '#fafafa', 
-      paper: '#ffffff',
+      // Subtle off-white/parchment background
+      default: '#fff8e1', // Light Cornsilk
+      paper: '#ffffff', // White for raised elements like cards
     },
-    // Example of adding an accent color (optional)
-    // accent: {
-    //   main: yellow[500],
-    // }
+    text: {
+      // Standard text colors for readability
+      primary: 'rgba(0, 0, 0, 0.87)',
+      secondary: 'rgba(0, 0, 0, 0.6)',
+    },
+    divider: 'rgba(0, 0, 0, 0.12)',
+    // We can add more specific colors later (e.g., error, warning, success)
   },
   typography: {
-    fontFamily: 'Roboto, "Helvetica", "Arial", sans-serif', // Keep standard font for now
-    // You could customize fonts here later if desired
-    h1: { fontWeight: 700 },
-    h2: { fontWeight: 700 },
-    h3: { fontWeight: 700 },
-    h4: { fontWeight: 600 },
-    h5: { fontWeight: 600 },
-    h6: { fontWeight: 600 },
+    // Define the main body font
+    fontFamily: '"Nunito Sans", "Helvetica", "Arial", sans-serif',
+    // Define the heading font
+    h1: { fontFamily: '"Silkscreen", "Courier New", monospace', fontWeight: 400 }, // Silkscreen only has weight 400
+    h2: { fontFamily: '"Silkscreen", "Courier New", monospace', fontWeight: 400 },
+    h3: { fontFamily: '"Silkscreen", "Courier New", monospace', fontWeight: 400 },
+    h4: { fontFamily: '"Silkscreen", "Courier New", monospace', fontWeight: 400 },
+    h5: { fontFamily: '"Silkscreen", "Courier New", monospace', fontWeight: 400 },
+    h6: { fontFamily: '"Silkscreen", "Courier New", monospace', fontWeight: 400 },
+    // We can adjust other variants like button, caption etc. if needed
+    // Example: Ensure buttons use the main font
+    button: {
+      fontFamily: '"Nunito Sans", "Helvetica", "Arial", sans-serif',
+      fontWeight: 600, // Buttons are often bolder
+      textTransform: 'none', // Optional: Keep button text case as typed
+    }
   }
 });
 

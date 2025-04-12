@@ -77,7 +77,7 @@ const GameDetails: React.FC = () => {
                 const target = e.target as HTMLImageElement;
                 target.onerror = null;
                 target.src = '/images/placeholder.png';
-                target.alt = 'Placeholder image';
+                target.alt = `Placeholder for ${game.title}`;
               }}
             />
           </Box>

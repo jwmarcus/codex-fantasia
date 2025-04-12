@@ -24,19 +24,20 @@ const Games: React.FC = () => {
   const [selectedPlatform, setSelectedPlatform] = useState<string>(''); // Empty string means 'All'
   const [selectedCombatStyle, setSelectedCombatStyle] = useState<string>(''); // Empty string means 'All'
 
-  // Data - No changes needed here for loading
-  const [games, setGames] = useState<Game[]>([]);
+  // Data Loading State (no longer need state for the game data itself)
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Simulate loading data
+    // Simulate loading completion (or fetch if it were async)
+    // We don't need to set game data here anymore as we use gamesData directly
     try {
-      setGames(gamesData);
+      // If this were an API call, you'd fetch here and handle loading/error
+      // Since it's static, just mark loading as done
       setLoading(false);
     } catch (err) {
-      console.error("Error loading game data:", err);
-      setError('Failed to load game data.');
+      console.error("Error during initial data load simulation:", err);
+      setError('Failed to initialize game list.');
       setLoading(false);
     }
   }, []);
@@ -51,6 +52,7 @@ const Games: React.FC = () => {
 
   // Filtered games based on selections
   const filteredGames = useMemo(() => {
+    // Use the imported gamesData directly for filtering
     return gamesData.filter(game => {
       const platformMatch = selectedPlatform ? game.platform === selectedPlatform : true;
       const combatStyleMatch = selectedCombatStyle ? game.combatStyle === selectedCombatStyle : true;

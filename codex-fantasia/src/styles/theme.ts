@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles';
-import { pink, lightBlue, yellow } from '@mui/material/colors'; // Import some fun colors
+import { pink, lightBlue } from '@mui/material/colors'; // Removed yellow
 
 // Create a light, fun theme inspired by Kirby
 const theme = createTheme({

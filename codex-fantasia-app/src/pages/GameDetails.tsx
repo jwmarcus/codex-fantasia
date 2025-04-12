@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link as RouterLink } from 'react-router-dom';
-import { Game } from '../models/Game';
-import gamesData from '../data/games.json';
 import {
-  Container,
-  Typography,
-  CircularProgress,
   Alert,
-  Paper,
   Box,
   Button,
   Chip,
-  Stack
+  CircularProgress,
+  Container,
+  Divider,
+  Paper,
+  Stack,
+  Typography
 } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Link as RouterLink, useParams } from 'react-router-dom';
+import gamesData from '../data/games.json';
+import { Game } from '../models/Game';
 
 const GameDetails: React.FC = () => {
   const { gameId } = useParams<{ gameId: string }>();
@@ -93,16 +94,15 @@ const GameDetails: React.FC = () => {
             <Typography variant="body1" paragraph sx={{ marginTop: 2 }}>
               {game.description}
             </Typography>
-            <Typography variant="subtitle1" gutterBottom>
-              <strong>Platform:</strong> {game.platform}
-            </Typography>
-            <Typography variant="subtitle1" gutterBottom>
-              <strong>Genre:</strong> {game.genre}
-            </Typography>
-            <Typography variant="subtitle1" gutterBottom>
-              <strong>Combat Style:</strong> {game.combatStyle}
-            </Typography>
-            
+            <Divider sx={{ my: 2 }} />
+            <Typography variant="body1" paragraph><strong>Platform:</strong> {
+              game.platforms && game.platforms.length > 0
+                ? game.platforms.map(p => p.name).join(', ')
+                : 'N/A'
+            }</Typography>
+            <Typography variant="body1" paragraph><strong>Genre:</strong> {game.genre || 'N/A'}</Typography>
+            <Typography variant="body1" paragraph><strong>Combat Style:</strong> {game.combatStyle || 'N/A'}</Typography>
+
             {game.tags && game.tags.length > 0 && (
               <Box sx={{ marginTop: 2 }}>
                 <Typography variant="subtitle1" gutterBottom>
@@ -115,7 +115,7 @@ const GameDetails: React.FC = () => {
                 </Stack>
               </Box>
             )}
-            
+
             <Box sx={{ marginTop: 3 }}>
               <Button variant="outlined" component={RouterLink} to="/games">
                 Back to Game Library

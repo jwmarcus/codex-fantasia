@@ -2,7 +2,7 @@ import { Box, Card, CardActionArea, CardContent, CardMedia, Chip, Typography } f
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 // Placeholder for game data structure - replace with actual model later
-import { Game } from '../models/Game'; // Assuming models/Game.ts exists or will exist
+import { Game } from 'models/Game'; // Use path relative to baseUrl
 
 interface GameCardProps {
     game: Game;

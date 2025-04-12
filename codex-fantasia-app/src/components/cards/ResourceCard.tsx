@@ -1,7 +1,7 @@
 import LaunchIcon from '@mui/icons-material/Launch'; // Icon for external links
 import { Card, CardContent, Chip, Link, Typography } from '@mui/material';
+import { ResourceLink } from 'models/ResourceLink'; // Import the model using path relative to baseUrl
 import React from 'react';
-import { ResourceLink } from '../models/ResourceLink'; // Import the model
 
 interface ResourceCardProps {
     resource: ResourceLink;

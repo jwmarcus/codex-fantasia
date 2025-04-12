@@ -1,21 +1,22 @@
 # Codex Fantasia
 
-*A nostalgic codex for classic JRPGs. Lore, stats, sprites—preserved and celebrated.*
+*Your nostalgic guide to discovering and playing classic JRPGs.*
 
 ## ✨ What is this?
 
-**Codex Fantasia** is a fan-built digital bestiary and lore archive for the golden age of JRPGs. Inspired by classics like *Final Fantasy*, *Dragon Warrior*, *Chrono Trigger*, and *Earthbound*, it's a tribute to the characters, enemies, items, and absurdly specific elemental resistances we grew up memorizing.
+**Codex Fantasia** is a discovery platform dedicated to helping people find and play classic JRPGs from the golden age. Whether you're a nostalgic veteran looking to revisit beloved worlds or a curious newcomer wondering where to start, we're here to guide your journey through these timeless adventures.
 
-This app will let users browse, search, and explore a cross-title database of iconic RPG data, with a UX built for joy and a backend written in TypeScript (because pain is growth).
+We don't aim to replace the incredible resources already created by the JRPG community. Instead, we connect you with the best existing guides, walkthroughs, and fan sites while providing the context and guidance you need to actually start playing.
 
 ## 🎮 Features (Planned)
 
-- 📚 Deeply searchable database of JRPG enemies, items, skills, and lore
-- 🖼️ Sprite and artwork viewing
-- 🔎 Advanced filtering (status effects, elemental affinities, encounter rates, etc.)
-- 🧩 Cross-title comparisons and trivia
-- 💾 Save favorites, curate lists, and share them with others
-- 🧠 Eventually: user-contributed content and wiki-style editing
+- 🔍 **Smart Discovery System**: Find your next JRPG adventure based on your preferences, available time, and experience level
+- 🚪 **Gateway Guides**: Newcomer-friendly introductions to the genre with personalized recommendations
+- 🕹️ **How to Play Now**: Clear, up-to-date information on how to legally play each game on modern systems
+- 📚 **Resource Directory**: Curated links to the best existing guides, communities, and content for each game
+- 📊 **Playability Insights**: Modern perspective on how these classics hold up today, with version comparisons
+- 💾 **Play Tracking**: Mark games as played, currently playing, or on your wishlist
+- 🧩 **Community Features**: Share your journey with others and join group playthroughs
 
 ## 🛠️ Tech Stack
 
@@ -28,9 +29,20 @@ This app will let users browse, search, and explore a cross-title database of ic
 ## 💡 Inspiration
 
 - *Nintendo Power strategy guides*
-- *GameFAQs ASCII art*
+- *GameFAQs community*
 - *BradyGames books*
-- *Your older cousin’s half-remembered walkthroughs*
+- *Modern retro gaming YouTube channels*
+- *Patient Gamer communities*
+
+## 🗺️ Philosophical Approach
+
+Codex Fantasia operates on a few core principles:
+
+1. **Play First**: Our primary goal is to get you playing these games, not just reading about them
+2. **Respect Time**: We recognize modern players have different time constraints and provide options accordingly
+3. **Celebrate Existing Work**: We highlight and connect to the best community resources rather than recreating them
+4. **Thoughtful Curation**: Not every game deserves the same amount of attention—we guide you to experiences worth your time
+5. **Modern Context**: We discuss these classics with both historical appreciation and contemporary perspective
 
 ## 🧪 Status
 
@@ -38,7 +50,7 @@ This is a nights-and-weekends passion project between friends. Expect slow progr
 
 ## 🤝 Contributing
 
-We’re not accepting external contributors *yet*, but if you’ve got ideas, pixel art, or text dumps sitting in a folder since 1998—hit us up.
+We're not accepting external contributors *yet*, but if you've got ideas or want to help with the project, feel free to open an issue for discussion.
 
 ## 📜 License
 
@@ -46,5 +58,4 @@ TBD. Likely something open but protective of nostalgic intent.
 
 ---
 
-*“No one remembers the first enemy you fought. But you do.”*
-
+*"Turns out the real treasure was the 60+ hour JRPG we played along the way."*

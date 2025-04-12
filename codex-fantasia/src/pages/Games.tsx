@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { Game } from '../models/Game';
+// import { Game } from '../models/Game'; // Removed as it's not explicitly used here
 import gamesData from '../data/games.json';
 import {
   Container,

@@ -7,7 +7,9 @@
     "developer": "Square",
     "description": "A timeless RPG classic involving time travel, a memorable cast, and multiple endings.",
     "genre": "RPG",
-    "imageUrl": "/images/games/chrono-trigger.png"
+    "imageUrl": "/images/games/chrono-trigger.png",
+    "combatStyle": "ATB",
+    "tags": ["Time Travel", "Pixel Art", "16-bit", "Multiple Endings", "Silent Protagonist", "Ensemble Cast"]
   },
   {
     "id": 2,
@@ -17,7 +19,9 @@
     "developer": "Square",
     "description": "An epic tale with a large ensemble cast, magicite system, and a world-shattering event.",
     "genre": "RPG",
-    "imageUrl": "/images/games/ff6.png"
+    "imageUrl": "/images/games/ff6.png",
+    "combatStyle": "ATB",
+    "tags": ["High Fantasy", "Steampunk", "Pixel Art", "16-bit", "Large Cast", "Magicite", "Opera Scene"]
   },
   {
     "id": 3,
@@ -27,6 +31,8 @@
     "developer": "Sega",
     "description": "The concluding chapter of the original Phantasy Star series, set in the Algol solar system.",
     "genre": "RPG",
-    "imageUrl": "/images/games/ps4.png"
+    "imageUrl": "/images/games/ps4.png",
+    "combatStyle": "Turn-based",
+    "tags": ["Sci-Fi", "Pixel Art", "16-bit", "Manga Panels", "Combination Attacks", "Algol System"]
   }
 ] 

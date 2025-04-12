@@ -7,4 +7,6 @@ export interface Game {
   description: string;
   genre: string;
   imageUrl: string;
+  combatStyle: string;
+  tags: string[];
 } 

@@ -10,6 +10,8 @@ import {
   Paper,
   Box,
   Button,
+  Chip,
+  Stack
 } from '@mui/material';
 
 const GameDetails: React.FC = () => {
@@ -97,6 +99,23 @@ const GameDetails: React.FC = () => {
             <Typography variant="subtitle1" gutterBottom>
               <strong>Genre:</strong> {game.genre}
             </Typography>
+            <Typography variant="subtitle1" gutterBottom>
+              <strong>Combat Style:</strong> {game.combatStyle}
+            </Typography>
+            
+            {game.tags && game.tags.length > 0 && (
+              <Box sx={{ marginTop: 2 }}>
+                <Typography variant="subtitle1" gutterBottom>
+                  <strong>Tags:</strong>
+                </Typography>
+                <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
+                  {game.tags.map((tag) => (
+                    <Chip key={tag} label={tag} size="small" variant="outlined" />
+                  ))}
+                </Stack>
+              </Box>
+            )}
+            
             <Box sx={{ marginTop: 3 }}>
               <Button variant="outlined" component={RouterLink} to="/games">
                 Back to Game Library

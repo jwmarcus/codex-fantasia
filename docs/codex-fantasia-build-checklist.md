@@ -3,18 +3,18 @@
 ## Project Setup Checklist
 
 ### Environment Setup
-- [ ] Initialize Git repository
-- [ ] Set up project structure with Vite + React + TypeScript
-- [ ] Configure ESLint and Prettier
-- [ ] Set up basic CI/CD pipeline
-- [ ] Create development, staging, and production environments
+- [x] Initialize Git repository
+- [x] Set up project structure with Vite + React + TypeScript
+- [x] Configure ESLint and Prettier
+- [x] Set up basic CI/CD pipeline
+- [x] Create development, staging, and production environments
 
 ### Project Foundation
-- [ ] Define folder structure for components, hooks, utils, etc.
-- [ ] Set up routing with React Router
-- [ ] Create global state management (Context API or Redux)
+- [x] Define folder structure (src/ includes assets, components, data, hooks, models, pages, styles, utils)
+- [x] Set up routing with React Router
+- [x] Create global state management (Context API or Redux)
 - [ ] Implement basic authentication system
-- [ ] Create placeholder pages for main routes
+- [x] Create placeholder pages for main routes
 
 ### Design System Implementation
 - [ ] Create color palette with nostalgic JRPG-inspired colors

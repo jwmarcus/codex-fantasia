@@ -1,0 +1,85 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User Model
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  email     String   @unique
+  password  String // Hashed password
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Add relations later for game tracking, preferences etc.
+}
+
+// Game Model
+model Game {
+  id                      String   @id @default(cuid())
+  title                   String
+  alternativeTitles       String[]
+  releaseDate             DateTime?
+  developer               String?
+  publisher               String?
+  genre                   String?
+  subgenre                String?
+  beginnerFriendliness    Int?     @db.SmallInt // Rating 1-5
+  modernPlayabilityScore  Int?     @db.SmallInt // How well it holds up
+  estimatedCompletionTime String? // e.g., "Main: 30h, Comp: 50h"
+  synopsis                String?
+  isEntryPoint            Boolean? @default(false) // Good starting point for series/genre?
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+
+  playabilityInfo PlayabilityInfo[]
+  resourceLinks   ResourceLink[]
+  // Add more relations later (GameRelationships, etc.)
+}
+
+// Playability Info Model
+model PlayabilityInfo {
+  id                    String   @id @default(cuid())
+  platform              String   // e.g., "PC", "PS5", "Switch", "SNES"
+  modernAvailability    String[] // e.g., "Steam", "PS Store", "Nintendo Switch Online"
+  originalPlatform      String?
+  digitalStoreLinks     String[]
+  subscriptionServices  String[] // e.g., "PS Plus Extra", "Game Pass"
+  regionRestrictions    String?
+  languageOptions       String[]
+  notableVersionDiffs   String?
+  qualityOfLifeFeatures String[]
+  systemRequirements    String?  // For PC
+
+  game   Game   @relation(fields: [gameId], references: [id])
+  gameId String
+}
+
+// Resource Link Model
+model ResourceLink {
+  id             String   @id @default(cuid())
+  type           String   // e.g., "guide", "walkthrough", "fan site", "video", "community"
+  url            String
+  title          String
+  sourceCreator  String?
+  description    String?
+  communityRating Float?   @default(0)
+  lastVerifiedAt DateTime?
+
+  game   Game   @relation(fields: [gameId], references: [id])
+  gameId String
+}
+
+// Add other models like PlayStyles, GameRelationships later

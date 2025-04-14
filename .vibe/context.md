@@ -9,7 +9,7 @@ Codex Fantasia is a discovery platform and interactive guide for classic JRPGs, 
 ## 2. Current Status & Immediate Goals
 
 *   **Overall Phase:** Phase 2: Core Features (Backend focus)
-*   **Checklist:** See `docs/codex-fantasia-build-checklist.md` for detailed status.
+*   **Checklist:** See `.vibe/checklist.md` for detailed status.
 *   **Immediate Goals:**
     *   Build out core backend API endpoints (CRUD for Games is done, need Users, Resources, etc.).
     *   Implement basic authentication.
@@ -26,8 +26,8 @@ Codex Fantasia is a discovery platform and interactive guide for classic JRPGs, 
 
 ## 4. Key Documents
 
-*   **Product Requirements:** `docs/codex-fantasia-prd.md`
-*   **Build Checklist & Status:** `docs/codex-fantasia-build-checklist.md`
+*   **Product Requirements:** `.vibe/prd.md`
+*   **Build Checklist & Status:** `.vibe/checklist.md`
 
 ## 5. Core Code Locations
 

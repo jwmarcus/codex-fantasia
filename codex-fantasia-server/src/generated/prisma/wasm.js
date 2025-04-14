@@ -121,9 +121,12 @@ exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   username: 'username',
   email: 'email',
-  password: 'password',
+  auth0Sub: 'auth0Sub',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  theme: 'theme',
+  ownedPlatforms: 'ownedPlatforms',
+  preferredGenres: 'preferredGenres'
 };
 
 exports.Prisma.GameScalarFieldEnum = {
@@ -171,6 +174,17 @@ exports.Prisma.ResourceLinkScalarFieldEnum = {
   gameId: 'gameId'
 };
 
+exports.Prisma.UserGameEntryScalarFieldEnum = {
+  id: 'id',
+  status: 'status',
+  rating: 'rating',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId',
+  gameId: 'gameId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -185,13 +199,20 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.GameStatus = exports.$Enums.GameStatus = {
+  PLAYED: 'PLAYED',
+  PLAYING: 'PLAYING',
+  WANT_TO_PLAY: 'WANT_TO_PLAY',
+  BACKLOG: 'BACKLOG',
+  DROPPED: 'DROPPED'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',
   Game: 'Game',
   PlayabilityInfo: 'PlayabilityInfo',
-  ResourceLink: 'ResourceLink'
+  ResourceLink: 'ResourceLink',
+  UserGameEntry: 'UserGameEntry'
 };
 
 /**

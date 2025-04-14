@@ -19,16 +19,21 @@ model User {
   id        String   @id @default(cuid())
   username  String   @unique
   email     String   @unique
-  password  String // Hashed password
+  auth0Sub  String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // Add relations later for game tracking, preferences etc.
+  // Relations
+  gameEntries     UserGameEntry[] // User's tracked games
+  // Preferences
+  theme           String?         @default("light") // e.g., "light", "dark", "pixel"
+  ownedPlatforms  String[]        @default([]) // Platforms the user owns
+  preferredGenres String[]        @default([]) // Genres the user prefers
 }
 
 // Game Model
 model Game {
-  id                      String   @id @default(cuid())
+  id                      String    @id @default(cuid())
   title                   String
   alternativeTitles       String[]
   releaseDate             DateTime?
@@ -36,23 +41,24 @@ model Game {
   publisher               String?
   genre                   String?
   subgenre                String?
-  beginnerFriendliness    Int?     @db.SmallInt // Rating 1-5
-  modernPlayabilityScore  Int?     @db.SmallInt // How well it holds up
+  beginnerFriendliness    Int?      @db.SmallInt // Rating 1-5
+  modernPlayabilityScore  Int?      @db.SmallInt // How well it holds up
   estimatedCompletionTime String? // e.g., "Main: 30h, Comp: 50h"
   synopsis                String?
-  isEntryPoint            Boolean? @default(false) // Good starting point for series/genre?
-  createdAt               DateTime @default(now())
-  updatedAt               DateTime @updatedAt
+  isEntryPoint            Boolean?  @default(false) // Good starting point for series/genre?
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
 
   playabilityInfo PlayabilityInfo[]
   resourceLinks   ResourceLink[]
+  userEntries     UserGameEntry[] // Entries linking users to this game
   // Add more relations later (GameRelationships, etc.)
 }
 
 // Playability Info Model
 model PlayabilityInfo {
   id                    String   @id @default(cuid())
-  platform              String   // e.g., "PC", "PS5", "Switch", "SNES"
+  platform              String // e.g., "PC", "PS5", "Switch", "SNES"
   modernAvailability    String[] // e.g., "Steam", "PS Store", "Nintendo Switch Online"
   originalPlatform      String?
   digitalStoreLinks     String[]
@@ -61,7 +67,7 @@ model PlayabilityInfo {
   languageOptions       String[]
   notableVersionDiffs   String?
   qualityOfLifeFeatures String[]
-  systemRequirements    String?  // For PC
+  systemRequirements    String? // For PC
 
   game   Game   @relation(fields: [gameId], references: [id])
   gameId String
@@ -69,17 +75,44 @@ model PlayabilityInfo {
 
 // Resource Link Model
 model ResourceLink {
-  id             String   @id @default(cuid())
-  type           String   // e.g., "guide", "walkthrough", "fan site", "video", "community"
-  url            String
-  title          String
-  sourceCreator  String?
-  description    String?
-  communityRating Float?   @default(0)
-  lastVerifiedAt DateTime?
+  id              String    @id @default(cuid())
+  type            String // e.g., "guide", "walkthrough", "fan site", "video", "community"
+  url             String
+  title           String
+  sourceCreator   String?
+  description     String?
+  communityRating Float?    @default(0)
+  lastVerifiedAt  DateTime?
 
   game   Game   @relation(fields: [gameId], references: [id])
   gameId String
+}
+
+// Enum for Game Tracking Status
+enum GameStatus {
+  PLAYED
+  PLAYING
+  WANT_TO_PLAY
+  BACKLOG
+  DROPPED
+}
+
+// Model for User Game Tracking and Rating
+model UserGameEntry {
+  id        String     @id @default(cuid())
+  status    GameStatus
+  rating    Int?       @db.SmallInt // User's personal rating (1-5)
+  notes     String?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  game   Game   @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  gameId String
+
+  @@unique([userId, gameId]) // User can only have one entry per game
 }
 
 // Add other models like PlayStyles, GameRelationships later

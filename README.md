@@ -26,6 +26,38 @@ We don't aim to replace the incredible resources already created by the JRPG com
 - **Storage**: TBD (likely S3 or Supabase)
 - **Deployment**: Docker, Railway/Vercel/Fly.io TBD
 
+## 🤖 AI Collaboration & `.vibe` Directory
+
+This project heavily utilizes AI pair programming assistants (like Cursor). To streamline this collaboration and maintain context, we use a dedicated `.vibe` directory at the project root.
+
+**Purpose:**
+
+*   Provides essential, up-to-date context for AI assistants.
+*   Defines preferred interaction styles and coding conventions for AI collaboration.
+*   Optionally logs the history of AI-assisted development sessions.
+
+**Structure:**
+
+*   `.vibe/context.md`: Core project context (vision, status, tech, key file pointers).
+*   `.vibe/preferences.md`: Developer preferences for AI interaction and code style.
+*   `.vibe/session_template.md`: Template for documenting AI pairing sessions.
+*   `.vibe/sessions/`: Directory containing individual session logs (optional).
+*   `.vibe/framework_rationale.md`: Explanation of this framework.
+
+**Workflow:**
+
+When starting a new coding session with an AI assistant:
+
+1.  **Provide Initial Context:** Point the AI to the key files:
+    ```
+    @.vibe/context.md 
+    @.vibe/preferences.md
+    ```
+2.  **Follow Preferences:** The AI should adhere to the guidelines in `preferences.md` during the session.
+3.  **(Optional) Log Session:** For complex tasks, use the `[SessionLog Start/End]` markers in chat and ask the AI to summarize the interaction using the `session_template.md`, saving the result in the `sessions/` directory.
+
+This approach helps maintain consistency, reduces repetitive context sharing, and makes the collaborative development process more transparent.
+
 ## 💡 Inspiration
 
 - *Nintendo Power strategy guides*

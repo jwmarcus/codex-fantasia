@@ -58,6 +58,22 @@ When starting a new coding session with an AI assistant:
 
 This approach helps maintain consistency, reduces repetitive context sharing, and makes the collaborative development process more transparent.
 
+**Starting a New Session (Example):**
+
+To ensure the AI assistant is properly oriented when resuming work:
+
+1.  **Open the Project:** In your IDE (e.g., Cursor).
+2.  **Start a New Chat Session:** Initiate a chat with the AI assistant.
+3.  **Provide Context:** Begin the conversation by referencing the core `.vibe` files. Example prompt:
+    ```
+    Good morning! Let's continue working on Codex Fantasia. Please review the project context and our preferences:
+    @.vibe/context.md
+    @.vibe/preferences.md
+
+    Today, I'd like to focus on [mention your specific goal, e.g., implementing the User model routes].
+    ```
+4.  **Proceed:** Continue the development conversation, optionally using the Session Logging workflow for significant tasks.
+
 ## 💡 Inspiration
 
 - *Nintendo Power strategy guides*

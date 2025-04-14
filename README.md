@@ -58,21 +58,35 @@ When starting a new coding session with an AI assistant:
 
 This approach helps maintain consistency, reduces repetitive context sharing, and makes the collaborative development process more transparent.
 
-**Starting a New Session (Example):**
+**How to Start a New Development Session (Using `.vibe`):**
 
-To ensure the AI assistant is properly oriented when resuming work:
+This step-by-step guide explains how to efficiently start a new coding session using the `.vibe` system, ensuring the AI assistant is properly oriented.
 
-1.  **Open the Project:** In your IDE (e.g., Cursor).
-2.  **Start a New Chat Session:** Initiate a chat with the AI assistant.
-3.  **Provide Context:** Begin the conversation by referencing the core `.vibe` files. Example prompt:
-    ```
-    Good morning! Let's continue working on Codex Fantasia. Please review the project context and our preferences:
+1.  **Open the Project:** Ensure the `codex-fantasia` project folder is open in your AI-enabled IDE (e.g., Cursor).
+
+2.  **Start a New Chat:** Initiate a *fresh* chat session with the AI assistant within the IDE. Do not rely on previous chat history, as context may be stale.
+
+3.  **Provide the Initial Context Prompt:** Copy and paste the following *exact* prompt into the chat, **replacing the bracketed part** with your actual goal for the session:
+
+    ```text
+    Good morning! Let's continue working on Codex Fantasia. Please review the project context and our preferences by reading these files:
     @.vibe/context.md
     @.vibe/preferences.md
 
-    Today, I'd like to focus on [mention your specific goal, e.g., implementing the User model routes].
+    Today, I'd like to focus on [mention your specific goal here, e.g., "implementing the basic User model routes" or "adding input validation to the game creation endpoint"].
     ```
-4.  **Proceed:** Continue the development conversation, optionally using the Session Logging workflow for significant tasks.
+
+    *   **Why this prompt?** It directs the AI to the core context (`context.md`) and your collaboration preferences (`preferences.md`), and provides immediate focus via your stated goal.
+
+4.  **Wait for Confirmation (Optional):** Allow the AI to acknowledge processing the files. It might summarize its understanding or ask clarifying questions.
+
+5.  **Begin "Vibe Coding":** Interact with the AI to achieve your stated goal, providing instructions, reviewing suggestions, etc.
+
+6.  **(Optional) Use Session Logging:** Follow the steps outlined above under "Workflow" if you wish to document the session.
+
+7.  **Commit Your Work:** Use standard `git` practices (ideally following Conventional Commits as per `preferences.md`) to save progress.
+
+By following these steps, particularly step #3, you ensure the AI assistant has the necessary project knowledge and understands your preferred way of working from the outset.
 
 ## 💡 Inspiration
 

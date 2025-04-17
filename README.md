@@ -118,6 +118,66 @@ We're not accepting external contributors *yet*, but if you've got ideas or want
 
 TBD. Likely something open but protective of nostalgic intent.
 
+## 🚀 Local Development Setup
+
+This section guides you through setting up the necessary backend components locally, primarily the PostgreSQL database. These instructions assume a Debian-based Linux environment (like Ubuntu under WSL).
+
+1.  **Install PostgreSQL:**
+    Open your terminal and run:
+    ```bash
+    sudo apt update
+    sudo apt install -y postgresql postgresql-contrib
+    ```
+
+2.  **Start and Verify PostgreSQL Service:**
+    Start the service (if not already started) and check its status:
+    ```bash
+    sudo service postgresql start
+    sudo service postgresql status 
+    # Look for "online" or similar confirmation
+    ```
+
+3.  **Create Database User and Database:**
+    Connect to the PostgreSQL command line as the default `postgres` user:
+    ```bash
+    sudo -u postgres psql
+    ```
+    Inside the `psql` prompt, run the following SQL commands. We'll use the username `postgres` and database name `codex_fantasia_db` as defaults used in the project setup. **It's recommended to change the password in a production setting.**
+    ```sql
+    -- Set a password for the default postgres user (replace 'postgres' if desired)
+    ALTER USER postgres WITH PASSWORD 'postgres'; 
+    
+    -- Create the database
+    CREATE DATABASE codex_fantasia_db;
+
+    -- Exit psql
+    \q 
+    ```
+
+4.  **Configure Backend Environment (.env):**
+    Navigate to the backend directory (`cd codex-fantasia-server`). If it doesn't exist, create a file named `.env` by copying `.env.example` (if one exists) or creating it from scratch. Ensure it contains the `DATABASE_URL`:
+    ```env
+    # .env file in codex-fantasia-server/
+    DATABASE_URL="postgresql://postgres:postgres@localhost:5432/codex_fantasia_db"
+    
+    # Add other environment variables like AUTH0_DOMAIN, AUTH0_AUDIENCE etc. here
+    # AUTH0_DOMAIN=...
+    # AUTH0_AUDIENCE=...
+    ```
+    *Replace user (`postgres`), password (`postgres`), host (`localhost`), port (`5432`), and database name (`codex_fantasia_db`) if you used different values in step 3.*
+
+5.  **Verify Database Connection via Prisma:**
+    From the `codex-fantasia-server` directory, run the Prisma status command:
+    ```bash
+    npx prisma migrate status
+    ```
+    If successful, Prisma will report the status of migrations and confirm it can connect to the database specified in your `.env` file. If you encounter errors, double-check your `DATABASE_URL` in `.env` and ensure the PostgreSQL service is running.
+
+6.  **(Optional) Seed the Database:**
+    Once the connection is verified, you might need to apply migrations and seed data (commands TBD, likely `npx prisma migrate dev` or `npx prisma db push` followed by a seed script).
+
+Now you should have a working local database connection for the backend server.
+
 ---
 
 *"Turns out the real treasure was the 60+ hour JRPG we played along the way."*

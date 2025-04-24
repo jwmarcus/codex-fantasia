@@ -10,20 +10,23 @@ export interface Platform {
 
 // Define the main Game data structure
 export interface Game {
-  id: string | number; // Unique identifier for the game
+  id: string;
   title: string;
-  thumbnailUrl?: string; // Optional thumbnail image URL
-  imageUrl?: string; // Optional larger image URL (used in GameDetails)
-  platforms?: Platform[]; // Array of platforms the game is available on
-  releaseYear?: number; // Added from GameDetails errors
-  developer?: string; // Added from GameDetails errors
-  description?: string; // Added from GameDetails errors
-  genre?: string; // Added from GameDetails errors
-  combatStyle?: string; // Added from GameDetails errors
-  tags?: string[]; // Added from GameDetails errors
-  estimatedPlaytime?: string; // e.g., "10-15 hours"
-  beginnerFriendliness?: number; // e.g., rating from 1 to 5
-  // Add other relevant fields from the PRD/Checklist later:
-  // synopsis?: string;
-  // etc.
+  alternativeTitles: string[];
+  releaseDate?: string; // Represent as string for simplicity, can parse later
+  developer?: string;
+  publisher?: string;
+  genre?: string;
+  subgenre?: string;
+  beginnerFriendliness?: number;
+  modernPlayabilityScore?: number;
+  estimatedCompletionTime?: string;
+  synopsis?: string;
+  isEntryPoint?: boolean;
+  createdAt: string; // Represent as string
+  updatedAt: string; // Represent as string
+
+  // Add related models later as needed
+  // playabilityInfo?: PlayabilityInfo[];
+  // resourceLinks?: ResourceLink[];
 } 

@@ -1,64 +1,61 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-// import { Game } from '../models/Game'; // Removed as it's not explicitly used here
-import gamesData from '../data/games.json';
+import { useApi } from '../hooks/useApi'; // Import the useApi hook
+import { Game } from '../models/Game';
+// import gamesData from '../data/games.json'; // Remove static data import
 import {
-  Container,
-  Typography,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemButton,
-  CircularProgress,
   Alert,
-  Paper,
   Box,
+  CircularProgress,
+  Container,
   FormControl,
   InputLabel,
-  Select,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
   MenuItem,
+  Paper,
+  Select,
+  Typography,
 } from '@mui/material';
 
 const Games: React.FC = () => {
-  // Filter State
-  const [selectedPlatform, setSelectedPlatform] = useState<string>(''); // Empty string means 'All'
-  const [selectedCombatStyle, setSelectedCombatStyle] = useState<string>(''); // Empty string means 'All'
+  // Use the useApi hook for fetching games
+  const { data: games, error, loading, callApi } = useApi<Game[]>();
 
-  // Data Loading State (no longer need state for the game data itself)
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  // Filter State
+  const [selectedPlatform, setSelectedPlatform] = useState<string>('');
+  const [selectedCombatStyle, setSelectedCombatStyle] = useState<string>('');
+
+  // Fetch games when component mounts
+  const fetchGamesCallback = useCallback(() => {
+    callApi('/api/games');
+  }, [callApi]);
 
   useEffect(() => {
-    // Simulate loading completion (or fetch if it were async)
-    // We don't need to set game data here anymore as we use gamesData directly
-    try {
-      // If this were an API call, you'd fetch here and handle loading/error
-      // Since it's static, just mark loading as done
-      setLoading(false);
-    } catch (err) {
-      console.error("Error during initial data load simulation:", err);
-      setError('Failed to initialize game list.');
-      setLoading(false);
-    }
-  }, []);
+    fetchGamesCallback();
+  }, [fetchGamesCallback]);
 
-  // Compute unique filter options using useMemo for efficiency
-  const uniquePlatforms = useMemo(() => 
-    [...new Set(gamesData.map(game => game.platform))].sort()
-  , []);
-  const uniqueCombatStyles = useMemo(() => 
-    [...new Set(gamesData.map(game => game.combatStyle))].sort()
-  , []);
+  // Game list derived from hook state (provide default empty array)
+  const gameList = useMemo(() => games || [], [games]);
 
-  // Filtered games based on selections
+  // Compute unique filter options from fetched data
+  const uniquePlatforms = useMemo(() =>
+    [...new Set(gameList.map(game => game.developer || 'Unknown'))].sort()
+    , [gameList]);
+  const uniqueCombatStyles = useMemo(() =>
+    [...new Set(gameList.map(game => game.genre || 'Unknown'))].sort()
+    , [gameList]);
+
+  // Filtered games based on selections and fetched data
   const filteredGames = useMemo(() => {
-    // Use the imported gamesData directly for filtering
-    return gamesData.filter(game => {
-      const platformMatch = selectedPlatform ? game.platform === selectedPlatform : true;
-      const combatStyleMatch = selectedCombatStyle ? game.combatStyle === selectedCombatStyle : true;
+    return gameList.filter(game => {
+      const platformMatch = selectedPlatform ? (game.developer === selectedPlatform) : true;
+      const combatStyleMatch = selectedCombatStyle ? (game.genre === selectedCombatStyle) : true;
       return platformMatch && combatStyleMatch;
     });
-  }, [selectedPlatform, selectedCombatStyle]);
+  }, [gameList, selectedPlatform, selectedCombatStyle]);
 
   return (
     <Container maxWidth="lg">
@@ -66,28 +63,28 @@ const Games: React.FC = () => {
         Game Library
       </Typography>
 
-      {/* Filter Controls - Using Box with Flexbox */}
+      {/* Filter Controls */}
       <Paper elevation={1} sx={{ padding: 2, marginBottom: 3 }}>
-        <Box 
+        <Box
           sx={{
             display: 'flex',
-            flexDirection: { xs: 'column', sm: 'row' }, // Stack on small screens, row on larger
-            gap: 2, // Spacing between filter items
-            alignItems: 'center' // Align items vertically
+            flexDirection: { xs: 'column', sm: 'row' },
+            gap: 2,
+            alignItems: 'center'
           }}
         >
-          {/* Platform Filter */}
+          {/* Platform Filter (Now using Developer as placeholder) */}
           <Box sx={{ width: { xs: '100%', sm: 'auto' }, flexGrow: { sm: 1 } }}>
             <FormControl fullWidth variant="outlined" size="small">
-              <InputLabel id="platform-filter-label">Platform</InputLabel>
+              <InputLabel id="platform-filter-label">Developer</InputLabel> {/* Changed Label */}
               <Select
                 labelId="platform-filter-label"
                 id="platform-filter"
                 value={selectedPlatform}
-                label="Platform"
+                label="Developer" // Changed Label
                 onChange={(e) => setSelectedPlatform(e.target.value as string)}
               >
-                <MenuItem value=""><em>All Platforms</em></MenuItem>
+                <MenuItem value=""><em>All Developers</em></MenuItem> {/* Changed Text */}
                 {uniquePlatforms.map(platform => (
                   <MenuItem key={platform} value={platform}>{platform}</MenuItem>
                 ))}
@@ -95,25 +92,24 @@ const Games: React.FC = () => {
             </FormControl>
           </Box>
 
-          {/* Combat Style Filter */}
+          {/* Combat Style Filter (Now using Genre as placeholder) */}
           <Box sx={{ width: { xs: '100%', sm: 'auto' }, flexGrow: { sm: 1 } }}>
             <FormControl fullWidth variant="outlined" size="small">
-              <InputLabel id="combat-style-filter-label">Combat Style</InputLabel>
+              <InputLabel id="combat-style-filter-label">Genre</InputLabel> {/* Changed Label */}
               <Select
                 labelId="combat-style-filter-label"
                 id="combat-style-filter"
                 value={selectedCombatStyle}
-                label="Combat Style"
+                label="Genre" // Changed Label
                 onChange={(e) => setSelectedCombatStyle(e.target.value as string)}
               >
-                <MenuItem value=""><em>All Combat Styles</em></MenuItem>
+                <MenuItem value=""><em>All Genres</em></MenuItem> {/* Changed Text */}
                 {uniqueCombatStyles.map(style => (
                   <MenuItem key={style} value={style}>{style}</MenuItem>
                 ))}
               </Select>
             </FormControl>
           </Box>
-          {/* Add more filter controls here following the Box pattern */}
         </Box>
       </Paper>
 
@@ -131,14 +127,15 @@ const Games: React.FC = () => {
                   <ListItemButton component={RouterLink} to={`/games/${game.id}`}>
                     <ListItemText
                       primary={game.title}
-                      secondary={`Developer: ${game.developer} | Platform: ${game.platform} | Year: ${game.releaseYear}`}
+                      secondary={`Developer: ${game.developer || 'N/A'} | Genre: ${game.genre || 'N/A'} | Released: ${game.releaseDate ? new Date(game.releaseDate).getFullYear() : 'N/A'}`}
                     />
                   </ListItemButton>
                 </ListItem>
               ))
             ) : (
               <ListItem>
-                <ListItemText primary="No games match the current filters." />
+                {/* Show different message if games loaded but filters match none */}
+                <ListItemText primary={gameList.length > 0 ? "No games match the current filters." : "No games found."} />
               </ListItem>
             )}
           </List>

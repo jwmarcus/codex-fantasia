@@ -5,6 +5,11 @@ import gameRoutes from './routes/game.routes'; // Import game routes
 
 dotenv.config(); // Load environment variables from .env file
 
+// --- TEMPORARY DEBUG LOGGING ---
+console.log('[DEBUG] AUTH0_DOMAIN:', process.env.AUTH0_DOMAIN);
+console.log('[DEBUG] AUTHBan0_AUDIENCE:', process.env.AUTH0_AUDIENCE);
+// --- END DEBUG LOGGING ---
+
 // Auth0 Configuration
 const checkJwt = auth({
     audience: process.env.AUTH0_AUDIENCE as string,

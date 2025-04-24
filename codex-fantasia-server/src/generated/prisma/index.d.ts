@@ -7476,10 +7476,10 @@ export namespace Prisma {
 
   export type GameWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    title?: string
     AND?: GameWhereInput | GameWhereInput[]
     OR?: GameWhereInput[]
     NOT?: GameWhereInput | GameWhereInput[]
-    title?: StringFilter<"Game"> | string
     alternativeTitles?: StringNullableListFilter<"Game">
     releaseDate?: DateTimeNullableFilter<"Game"> | Date | string | null
     developer?: StringNullableFilter<"Game"> | string | null
@@ -7496,7 +7496,7 @@ export namespace Prisma {
     playabilityInfo?: PlayabilityInfoListRelationFilter
     resourceLinks?: ResourceLinkListRelationFilter
     userEntries?: UserGameEntryListRelationFilter
-  }, "id">
+  }, "id" | "title">
 
   export type GameOrderByWithAggregationInput = {
     id?: SortOrder

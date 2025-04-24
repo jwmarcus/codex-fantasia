@@ -34,7 +34,7 @@ model User {
 // Game Model
 model Game {
   id                      String    @id @default(cuid())
-  title                   String
+  title                   String    @unique
   alternativeTitles       String[]
   releaseDate             DateTime?
   developer               String?

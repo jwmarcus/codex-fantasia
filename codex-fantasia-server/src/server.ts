@@ -5,15 +5,27 @@ import gameRoutes from './routes/game.routes'; // Import game routes
 
 dotenv.config(); // Load environment variables from .env file
 
-// --- TEMPORARY DEBUG LOGGING ---
-console.log('[DEBUG] AUTH0_DOMAIN:', process.env.AUTH0_DOMAIN);
-console.log('[DEBUG] AUTHBan0_AUDIENCE:', process.env.AUTH0_AUDIENCE);
-// --- END DEBUG LOGGING ---
+// Validate required environment variables
+const requiredEnvVars = [
+  'AUTH0_ISSUER_BASE_URL',
+  'AUTH0_AUDIENCE',
+  'AUTH0_CLIENT_ID',
+  'AUTH0_CLIENT_SECRET',
+  'DATABASE_URL'
+];
+
+const missingVars = requiredEnvVars.filter(varName => !process.env[varName]);
+if (missingVars.length > 0) {
+  console.error('Missing required environment variables:', missingVars.join(', '));
+  console.error('Please check your .env file. You can use .env.example as a reference.');
+  process.exit(1);
+}
 
 // Auth0 Configuration
 const checkJwt = auth({
-    audience: process.env.AUTH0_AUDIENCE as string,
-    issuerBaseURL: process.env.AUTH0_DOMAIN as string,
+  audience: process.env.AUTH0_AUDIENCE,
+  issuerBaseURL: `https://${process.env.AUTH0_ISSUER_BASE_URL}`,
+  tokenSigningAlg: 'RS256'
 });
 
 const app = express();
